@@ -1,16 +1,20 @@
 # processwire-docker
 My take on a docker container for processwire (or any other php+mysql project)
 
+## Infos 
+
 * runs on port 80
 * maps docker user id to host user id, so php can write files to the host system (see `./docker-compose.yml`)
-* stores mysql persistant in `./docker/mysql`
+* stores mysql data in `./docker/mysql`
 
-Put latest processwire version in `./htdocs`
-Build once: `docker-compose build`
-Start container: `docker-compose up`
-Stop container: `docker-compose down`
+## Usage 
 
-database config:
+* Put latest processwire version in `./htdocs`
+* Build once: `docker-compose build`
+* Start container: `docker-compose up`
+* Stop container: `docker-compose down`
+
+## Database config:
 
 ```php 
 $config->dbHost = 'db';
