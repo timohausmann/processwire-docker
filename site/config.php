@@ -1,0 +1,1 @@
+<?php // file must be writeable by the installer
