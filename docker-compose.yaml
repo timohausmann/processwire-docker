@@ -7,11 +7,16 @@ version: "3"
 # This docker-compose is for development only. For production use
 # another more secure configuration.
 
+# run containers as host user 1000 (`id -u`) so php can write files to the host system
+# https://ntsim.uk/posts/file-permissisions-when-developing-with-docker
+# https://github.com/docker-library/docs/commit/887388e572377e220c8a15e29a1e346daecca13d
+
 services:
   db:
     image: mariadb:10.5
     volumes:
-      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql:/var/lib/mysql
+    user: 1000:1000
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: docker
@@ -30,14 +35,9 @@ services:
       dockerfile: ./docker/Dockerfile
     restart: always
     volumes:
-      - ./htdocs:/var/www/html
+      - ./site:/var/www/html/site
     ports:
-      # machine port : docker port
       - 80:80
-    # running php as my user (id 1000) so php can write files to the host system
-    # (find out your user id with the terminal command `id -u`)
-    # https://ntsim.uk/posts/file-permissisions-when-developing-with-docker
-    # https://github.com/docker-library/docs/commit/887388e572377e220c8a15e29a1e346daecca13d
-    user: '1001:1001' 
+    user: 1000:1000
     sysctls:
       - net.ipv4.ip_unprivileged_port_start=0

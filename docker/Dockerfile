@@ -8,7 +8,8 @@ libpng-dev \
 libjpeg62-turbo-dev \
 libfreetype6-dev \
 libzip-dev \
-libicu-dev
+libicu-dev \
+git
 
 # php extentions
 RUN docker-php-ext-configure gd --with-webp=/usr/include/ --with-jpeg=/usr/include/ --with-freetype=/usr/include/ \
@@ -23,6 +24,11 @@ COPY docker/php-custom.ini /usr/local/etc/php/conf.d/php-custom.ini
 
 # apache
 RUN a2enmod rewrite
+
+# processwire
+RUN git clone git://github.com/processwire/processwire.git -b master /var/www/html
+RUN rm -rf /var/www/html.git
+RUN chown -R 1000:1000 /var/www/html
 
 # cleanup
 RUN apt-get clean
