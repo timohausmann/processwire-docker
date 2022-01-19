@@ -2,3 +2,13 @@
 *Thumbs.db
 
 /docker/mysql/**
+
+site/assets/files/**
+site/assets/cache/**
+site/assets/logs/**
+site/assets/sessions/**
+
+!site/assets/files/README.txt
+!site/assets/cache/.htaccess
+!site/assets/logs/.htaccess
+!site/assets/sessions/.htaccess
