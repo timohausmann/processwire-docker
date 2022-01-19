@@ -11,6 +11,8 @@ My take on a docker container for processwire.
 ## Usage 
 
 * `npx degit timohausmann/processwire-docker myAwesomeProject`
+* Make sure your host user ID matches the user id in docker-compose.yml
+* `cd myAwesomeProject`
 * Build once: `docker-compose build`
 * Start container: `docker-compose up`
 * Visit localhost:80 and run the processwire installer
@@ -26,3 +28,8 @@ $config->dbPass = 'docker';
 $config->dbPort = '3306';
 $config->dbCharset = 'utf8mb4'; // in case you like emojis
 ```
+
+## File permissions:
+
+`755` and `644` are a good place to start.
+`700` and `600` should work, too.

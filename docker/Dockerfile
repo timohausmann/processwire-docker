@@ -27,8 +27,9 @@ RUN a2enmod rewrite
 
 # processwire
 RUN git clone git://github.com/processwire/processwire.git -b master /var/www/html
-RUN rm -rf /var/www/html.git
-RUN chown -R 1000:1000 /var/www/html
+WORKDIR /var/www/html
+RUN rm -rf .git site-*
+RUN mv htaccess.txt .htaccess
 
 # cleanup
 RUN apt-get clean

@@ -7,6 +7,7 @@ version: "3"
 # This docker-compose is for development only. For production use
 # another more secure configuration.
 
+# IMPORTANT:
 # run containers as host user 1000 (`id -u`) so php can write files to the host system
 # https://ntsim.uk/posts/file-permissisions-when-developing-with-docker
 # https://github.com/docker-library/docs/commit/887388e572377e220c8a15e29a1e346daecca13d
