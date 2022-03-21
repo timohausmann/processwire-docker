@@ -26,7 +26,7 @@ COPY docker/php-custom.ini /usr/local/etc/php/conf.d/php-custom.ini
 RUN a2enmod rewrite
 
 # processwire
-RUN git clone git://github.com/processwire/processwire.git -b master /var/www/html
+RUN git clone https://github.com/processwire/processwire.git -b master /var/www/html
 WORKDIR /var/www/html
 RUN rm -rf .git site-*
 RUN mv htaccess.txt .htaccess
