@@ -1,4 +1,4 @@
-FROM php:7.4-apache-bullseye
+FROM php:8.1-apache-bullseye
 
 # apt-get install
 RUN apt-get update \
@@ -9,7 +9,8 @@ libjpeg62-turbo-dev \
 libfreetype6-dev \
 libzip-dev \
 libicu-dev \
-git
+git \
+locales locales-all
 
 # php extentions
 RUN docker-php-ext-configure gd --with-webp=/usr/include/ --with-jpeg=/usr/include/ --with-freetype=/usr/include/ \
