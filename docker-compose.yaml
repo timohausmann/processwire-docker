@@ -18,7 +18,7 @@ services:
     volumes:
       - ./docker/mysql:/var/lib/mysql
     user: 1000:1000
-    restart: always
+    restart: unless-stopped
     environment:
       MARIADB_ROOT_PASSWORD: docker
       MARIADB_DATABASE: docker
@@ -34,7 +34,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./site:/var/www/html/site
     ports:
