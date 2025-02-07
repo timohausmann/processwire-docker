@@ -2,10 +2,14 @@
 
 My take on a Docker container for ProcessWire.
 
+It's using the latest ProcessWire release (master branch). 
+
 ## Usage 
 
-* `npx degit timohausmann/processwire-docker myAwesomeProject`
-* Edit the line `user: 1000:1000` in docker-compose.yml: replace both `1000` with your host system user ID (run `id -u` to find it)
+* Download this repository. If you have node installed, you can use: 
+`npx degit timohausmann/processwire-docker myAwesomeProject`
+* In docker-compose.yml, edit the line `user: 1000:1000`: 
+replace both `1000` with your host system user ID (run `id -u` to find it)
 * `cd myAwesomeProject`
 * Build once: `docker compose build`
 * Start container: `docker compose up`
@@ -27,4 +31,5 @@ $config->dbEngine = 'InnoDB';
 ## File permissions:
 
 `755` and `644` are a good place to start.
+
 `700` and `600` should work, too.
