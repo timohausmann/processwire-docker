@@ -1,24 +1,11 @@
-version: "3"
-
-# When docker turns off by force sometimes MySQL/MariaDB have problems
-# Initializing. Ensure deleting the file tc.log inside the
-# /database directory and restart.
-#
-# This docker-compose is for development only. For production use
-# another more secure configuration.
-
-# IMPORTANT:
-# run containers as host user 1000 (`id -u`) so php can write files to the host system
-# https://ntsim.uk/posts/file-permissisions-when-developing-with-docker
-# https://github.com/docker-library/docs/commit/887388e572377e220c8a15e29a1e346daecca13d
+# This docker-compose is for development only.
+# Run containers as host user 1000 (`id -u`) so php can write files to the host system
 
 services:
   db:
-    image: mariadb:10.5
+    image: mariadb:latest
     volumes:
-      - ./docker/mysql:/var/lib/mysql
-    user: 1000:1000
-    restart: unless-stopped
+      - dbdata:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: docker
       MARIADB_DATABASE: docker
@@ -29,16 +16,14 @@ services:
   pw:
     depends_on:
       - db
-    links:
-      - db
     build:
       context: .
       dockerfile: ./docker/Dockerfile
-    restart: unless-stopped
     volumes:
       - ./site:/var/www/html/site
     ports:
-      - 80:80
+      - 8080:80
     user: 1000:1000
-    sysctls:
-      - net.ipv4.ip_unprivileged_port_start=0
+
+volumes:
+  dbdata:

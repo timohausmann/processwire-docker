@@ -1,22 +1,16 @@
 # processwire-docker
-My take on a docker container for processwire.
 
-## Infos 
-
-* maps port 80:80
-* maps host userid, so docker can write to the host system (see `./docker-compose.yml`)
-* volume for site: `./site`
-* volume for mysql data: `./docker/mysql`
+My take on a Docker container for ProcessWire.
 
 ## Usage 
 
 * `npx degit timohausmann/processwire-docker myAwesomeProject`
-* Make sure your host user ID matches the user id in docker-compose.yml
+* Edit the line `user: 1000:1000` in docker-compose.yml: replace both `1000` with your host system user ID (run `id -u` to find it)
 * `cd myAwesomeProject`
-* Build once: `docker-compose build`
-* Start container: `docker-compose up`
-* Visit localhost:80 and run the processwire installer
-* Stop container: `docker-compose down`
+* Build once: `docker compose build`
+* Start container: `docker compose up`
+* For a new site: Visit http://localhost:8080 and run the installer 
+* For an existing site: Replace the content of /site/ with your existing code and manually import a database dump.
 
 ## Database config:
 
@@ -26,7 +20,8 @@ $config->dbName = 'docker';
 $config->dbUser = 'docker';
 $config->dbPass = 'docker';
 $config->dbPort = '3306';
-$config->dbCharset = 'utf8mb4'; // in case you like emojis
+$config->dbCharset = 'utf8mb4';
+$config->dbEngine = 'InnoDB';
 ```
 
 ## File permissions:
