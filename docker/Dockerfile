@@ -24,7 +24,7 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 COPY docker/php-custom.ini /usr/local/etc/php/conf.d/php-custom.ini
 
 # apache
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
 
 # processwire
 RUN git clone https://github.com/processwire/processwire.git -b master /var/www/html
